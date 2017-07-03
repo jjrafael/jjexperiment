@@ -9,15 +9,19 @@
 <body>
 <!-- side pane -->
 <div class="sidepane col-sm-2 col-md-2 col-lg-2">
-  <div class="form">
-    <h3>Form</h3>
-      <input type="file" class="form-control" placeholder="Upload Your Images" name="upload">
-      <button id="submit" class="btn btn-default">upload</button>
+<div class="side-top">
+  <div class="brand"></div>
+  <!-- <button class="btn btn-primary disabled">Save</button> -->
+</div>
+  <form class="form form-upload hidden" id="form-upload" enctype="multipart/form-data" name="uploadform">
+    <h3>New Image</h3>
+    <input type="file" class="form-control input-img" placeholder="Upload Your Images" name="upload">
+    <input id="submit" class="btn btn-default" name="submit" type="submit" value="upload"/>
     <!-- Upload Form here -->
-  </div>
+  </form>
   <hr />
   <div class="assets">
-    <h3>Assets</h3>
+    <h3>Insert Assets</h3>
     <div class="text">
         <h4>Text</h4>
         <button id="addText" class="btn btn-default">Add Text</button>
@@ -27,6 +31,9 @@
         <ul class="list-unstyled">
             <!-- List of images here -->
             <!-- <li><img src="images/sample.jpeg" class="img-rounded" /></li> -->
+            <div class="img-new">
+              <i class="mdi mdi-plus"></i>
+            </div>
         </ul>
     </div>
   </div>

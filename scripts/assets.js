@@ -1,12 +1,12 @@
 JStest.extend('Assets', function(App) {
 
     var configMap = {
-        //static states (configs, constants ...)
+        //static states within this component (configs, constants ...)
         txtPlaceholder: 'Your text here'
     };
 
     var stateMap = {
-        //derived states
+        //derived states within this component
         itemCount: 0,
         lastItem: 0
         
@@ -17,11 +17,20 @@ JStest.extend('Assets', function(App) {
         App.Model.getImages(App.States.update, showError);    
     };
 
+    var checkcanSave = function() {
+        var canvas = $('.canvas .block');
+        var btn = $('.sidetop .btn');
+
+        if($(canvas).find('.item').length !== 0){
+            $(btn).removeClass('disable');
+        }
+    };
+
     var renderImages = function(data) {
         var $container = $('.image > ul');
         if(data.length){
             $.each(data, function( i, value ) {
-              $container.append('<li><img src="'+value+'" class="img-rounded"/></li>');
+              $container.prepend('<li><img src="'+value+'" class="img-rounded"/></li>');
             });
         }
         
@@ -58,6 +67,27 @@ JStest.extend('Assets', function(App) {
         $container.on('click', '#addText', function(){
             addAsset();
         });
+
+        $container.on('click', '.form-upload .btn', function(){
+            uploadImage();
+        });
+
+        $container.on('click', '.img-new', function(){
+            $('.input-img').trigger('click');
+        });
+
+        $container.on('change', '.input-img', function(){
+            uploadImage();
+        });
+    };
+
+    var uploadImage =function() {
+        var options = {};
+        var input = $('input[name="upload"]');
+        options['upload'] = input.val();
+        if(input.val()){
+            App.Model.postImage(options, App.States.update, showError); 
+        }
     };
 
     var addAsset = function(el) {
@@ -65,7 +95,9 @@ JStest.extend('Assets', function(App) {
             'id': '',
             'type': '',
             'content': '',
-            'format': {}
+            'format': {},
+            'xpos': 0,
+            'ypos': 0
         };
         var id = stateMap.lastItem + 1;
         stateMap.itemCount++;
@@ -80,10 +112,8 @@ JStest.extend('Assets', function(App) {
             item.type = 'text';
             renderText(id);
         }
-
-        App.States.stateMap.renderedItems.push(item);
-        App.Canvas.selectItem($('#'+id));
-        console.log('jj app states2: ', App.States.stateMap.renderedItems);
+        App.States.newItem(item, 'renderedItems');
+        App.Canvas.selectItem($('#'+id), true);
     }
 
     var showError = function(xhr) {
@@ -98,6 +128,7 @@ JStest.extend('Assets', function(App) {
 
     return {
         load: load,
+        stateMap: stateMap,
         renderImages: renderImages
     }
 

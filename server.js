@@ -1,4 +1,4 @@
-'use strict'
+  'use strict'
 
 const express = require( 'express' );
 const multer = require( 'multer' );
@@ -46,8 +46,10 @@ app.post( '/uploads', ( req, res ) => {
       console.log( err )
       res.status(400).json( {message: err} );
     } else {
+      //console.log('jj serv1a: ', req.body.upload);
       res.status(200).json( {
-        file: req.protocol + '://' + req.get('host') + '/images/' + req.file.filename
+        //file: req.protocol + '://' + req.get('host') + '/images/' + req.file.filename
+        message: 'Successfully Uploaded!'
       } )
     }
   })

@@ -1,5 +1,3 @@
-'use strict'
-
 var JStest = (function (){
     'use strict';
     var App = {
@@ -20,7 +18,8 @@ var JStest = (function (){
 
     return {
         initApp: initApp,
-        extend : extend
+        extend : extend,
+        App: App
     };
 
 }());
