@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.sidepane {
+  height: 100%;
+  background: #E8E8EA;
+}
+
+.sidepane .form {
+  height: 80px;
+  margin: 10px 0;
+}
+
+.sidepane .assets {
+  width: 100%;
+}
+
+#assetText {
+  font-size: 24px;
+}
+
+.assets .text, .assets .image {
+  margin: 10px 0;
+}
+.assets .image ul li {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  float: left;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.assets .image ul li:hover {
+  opacity: 0.5;
+}
+
+.assets .image ul li img {
+  width: 100%;
+  height: 100%;
+}
+
+.canvas .block {
+  position: relative;
+  width: 600px; height: 600px;
+  margin: 10px;
+  border: 1px solid;
+  box-shadow: 0px 0px 5px black;
+}
+
+.item {
+  border: 1px solid transparent;
+  position: absolute;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.item:hover {
+  border: 1px solid rgba(0,0,0,0.25);
+}
+
+.item.selected {
+  border-color: #50E381;
+}
+
+.item.selected.item-text textarea {
+  display: block;
+}
+
+.item.selected.item-text .text {
+  display: none;
+}
+
+.item.item-text {
+  min-width: 300px;
+  min-height: 60px;
+  top: calc(50% - 30px);
+  left: calc(50% - 150px);
+  color: black;
+}
+
+.item-text textarea {
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  outline: none;
+  overflow: auto;
+  min-height: 60px;
+  background: transparent; 
+  padding: 10px;
+  display: none;
+}
+
+.item-text .text {
+  padding: 10px;
+  background: transparent;
+  width: 100%;
+  height: auto;
+  border: 0px;
+  min-height: 60px;
+}
+
+.tools-wrap {
+  position: absolute;
+  top: -1px;
+  right: -30px;
+  width: 30px;
+  height: 80px;
+  transition: all 0.3s ease;
+  
+}
+
+.tools-wrap .tool {
+  width: 30px;
+  height: 30px;
+  float: left;
+  text-align: center;
+  background: #50E381;
+  line-height: 30px;
+  transition: all 0.3s ease;
+}
+
+.tools-wrap .tool:hover {
+  background: #38b763;
+  color: white;
+}
